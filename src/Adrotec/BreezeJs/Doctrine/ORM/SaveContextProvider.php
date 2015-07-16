@@ -102,7 +102,11 @@ class SaveContextProvider {
 //                return new \DateTime(strtotime($string));
             case "object":
             case "array":
-                return unserialize($string);
+                /**
+                 * @todo: check for better method
+                 * Breeze convert array to string (ex: [1,2] => 1,2) before send.
+                 */
+                return @unserialize($string) ? unserialize($string) : explode(',', $string);
             // strings
             case "bigint":
             case "text":
