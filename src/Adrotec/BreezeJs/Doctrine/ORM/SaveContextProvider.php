@@ -402,7 +402,10 @@ class SaveContextProvider {
                         );
                     }
                 }
-                $entities[] = $entityModified['entity'];
+                // We should exclude deleted entities in result
+                if($entityModified['state'] != 'Deleted'){
+                    $entities[] = $entityModified['entity'];
+                }
             }
         }
 
